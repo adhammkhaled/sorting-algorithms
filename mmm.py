@@ -61,3 +61,38 @@ arr = [5, 2, 8, 3, 9, 1]
 threshold = 5
 sorted_arr = hyperid_sort(arr, threshold)
 print("Sorted array:", sorted_arr)
+
+#########find_the_3rd_number
+def partition(arr, low, high):
+    pivot = arr[high]  # Choosing the pivot element from the array
+    leftPointer = low
+    rightPointer = high - 1
+    while leftPointer <= rightPointer:
+        while leftPointer <= rightPointer and arr[leftPointer] < pivot:
+            leftPointer += 1
+        while rightPointer >= leftPointer and arr[rightPointer] > pivot:
+            rightPointer -= 1
+        if leftPointer <= rightPointer:
+            arr[leftPointer], arr[rightPointer] = arr[rightPointer], arr[leftPointer]
+            leftPointer += 1
+            rightPointer -= 1
+
+    arr[leftPointer], arr[high] = arr[high], arr[leftPointer]
+    return leftPointer
+
+def find_kth_largest(arr, k):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        pivot_index = partition(arr, low, high)
+        if pivot_index == len(arr) - k:
+            return arr[pivot_index]
+        elif pivot_index < len(arr) - k:
+            low = pivot_index + 1
+        else:
+            high = pivot_index - 1
+    return None
+
+arr = [3, 55, 16, 25, 63, 52, 40]
+k = 3
+print("Kth largest element is:", find_kth_largest(arr, k))
