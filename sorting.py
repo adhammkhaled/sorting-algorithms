@@ -32,7 +32,7 @@ def insertion_sort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = key
-    print( arr)
+
 def selection_sort(arr):
     for i in range(len(arr)):
         min_ind = i
@@ -40,7 +40,6 @@ def selection_sort(arr):
             if arr[j] < arr[min_ind]:
                 min_ind = j
         arr[i], arr[min_ind] = arr[min_ind], arr[i]
-    print(arr)
 
 
 def mergeSort(arr):
@@ -174,12 +173,12 @@ def test_algorithms (x,nsquared):
     time_end = time.time()
     running_time = (time_end - time_start) * 1000
     print(f'Running time for quick sort for size {x} is {running_time} ms')
-
-test_algorithms(1000,True)
-test_algorithms(25000,True)
-test_algorithms(50000,True)
-test_algorithms(100000,True)
-test_algorithms(1000000,False)
+if __name__ == "__main__":
+    test_algorithms(1000,True)
+    test_algorithms(25000,True)
+    test_algorithms(50000,True)
+    test_algorithms(100000,True)
+    test_algorithms(1000000,False)
 
 
 
