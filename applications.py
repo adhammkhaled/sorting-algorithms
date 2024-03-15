@@ -1,3 +1,4 @@
+import copy
 import sorting
 
 
@@ -31,49 +32,29 @@ def insertion_sort_hybrid(arr, l, h):
 
 arr = sorting.generate_arr(1000)
 threshold = 5
-
+print(arr)
 sorted_arr = hybrid_sort(arr, threshold)
 print("Sorted array:", sorted_arr)
 
 
-
-#################
-
-import random
-
-def partition(arr, low, high):
-    pivot = arr[high]
-    leftPointer = low
-    rightPointer = high - 1
-    while leftPointer <= rightPointer:
-        while leftPointer <= rightPointer and arr[leftPointer] < pivot:
-            leftPointer += 1
-        while leftPointer <= rightPointer and arr[rightPointer] > pivot:
-            rightPointer -= 1
-        if leftPointer <= rightPointer:
-            arr[leftPointer], arr[rightPointer] = arr[rightPointer], arr[leftPointer]
-            leftPointer += 1
-            rightPointer -= 1
-
-    arr[leftPointer], arr[high] = arr[high], arr[leftPointer]
-    return leftPointer
-
 def find_kth_largest(arr, k):
+    arrcopy = copy.deepcopy(arr)
     low = 0
-    high = len(arr) - 1
+    high = len(arrcopy) - 1
     while low <= high:
-        pivot_index = partition(arr, low, high)
-        if pivot_index == len(arr) - k:
-            return arr[pivot_index]
-        elif pivot_index < len(arr) - k:
+        pivot_index = sorting.partition(arrcopy, high, low, arrcopy[high])
+        if pivot_index == len(arrcopy) - k:
+            return arrcopy[pivot_index]
+        elif pivot_index < len(arrcopy) - k:
             low = pivot_index + 1
         else:
             high = pivot_index - 1
     return None
 
-arr = [random.randint(0, 3000) for _ in range(300)]
-print(arr)
-k = 3
-print("Output:", find_kth_largest(arr, k))
+arr = [32,52,46,88,333,6778,33,21,3,6,8,3992,44]
+k = 4
+x=find_kth_largest(arr, k)
+
+print("Output:", x)
 
 
