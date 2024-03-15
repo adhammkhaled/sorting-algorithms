@@ -21,6 +21,28 @@ def selection_sort(arr):
         arr[i], arr[min_ind] = arr[min_ind], arr[i]
 
 
+
+
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    print( arr)
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_ind = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min_ind]:
+                min_ind = j
+        arr[i], arr[min_ind] = arr[min_ind], arr[i]
+    print(arr)
+
+
 def mergeSort(arr):
     _mergeSort(arr,0,len(arr)-1)
 def _mergeSort(arr,l,h):
