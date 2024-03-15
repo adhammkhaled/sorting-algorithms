@@ -6,9 +6,9 @@ def hybrid_sort(arr , threshold):
     return arr
 def _hybrid_sort(arr, l , h , threshold):
     if h-l <= threshold :
-        newArray = arr[l:h+1]
-        sorting.insertion_sort(newArray)
-        arr[l:h+1] = newArray
+
+        insertion_sort_hybrid(arr,l,h)
+
 
     else:
            if (l < h):
@@ -17,6 +17,16 @@ def _hybrid_sort(arr, l , h , threshold):
                 _hybrid_sort(arr, m + 1, h,threshold)
 
                 sorting.merge(arr,l,h)
+
+
+def insertion_sort_hybrid(arr, l, h):
+    for i in range(l + 1, h + 1):
+        key = arr[i]
+        j = i - 1
+        while j >= l and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
 
 
 arr = sorting.generate_arr(1000)
